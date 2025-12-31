@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 const STATUS_OPTIONS = [
   { value: "in-progress", label: "In Progress" },
@@ -18,9 +19,10 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
     setLoading(true);
     try {
       await api.patch(`/tickets/${ticketId}/status`, { status });
+      toast.success("Status updated");
       onUpdated();
     } catch (err) {
-      alert("Failed to update status");
+      toast.error("Failed to update status");
       setStatus(currentStatus);
     } finally {
       setLoading(false);
@@ -32,7 +34,7 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="border px-2 py-1 rounded text-sm"
+        className="border px-2 py-1 rounded text-sm cursor-pointer"
       >
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value}>
@@ -44,7 +46,7 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
       <button
         onClick={handleUpdate}
         disabled={loading}
-        className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 disabled:opacity-50"
+        className="text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
       >
         {loading ? "Saving..." : "Update"}
       </button>

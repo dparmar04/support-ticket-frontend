@@ -19,6 +19,9 @@ const AdminDashboard = () => {
   const [tickets, setTickets] = useState([]);
   const [overview, setOverview] = useState(null);
 
+  const [loadingTickets, setLoadingTickets] = useState(true);
+  const [loadingOverview, setLoadingOverview] = useState(false);
+
   // fetch tickets
   const fetchData = async () => {
     const res = await api.get("/tickets/all");

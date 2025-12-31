@@ -32,7 +32,7 @@ const SalesDashboard = () => {
     <Layout title="Sales Dashboard">
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Create Ticket */}
-        <div className="lg:col-span-1 bg-white rounded-xl shadow-sm p-5">
+        <div className="lg:col-span-1 bg-white h-max rounded-xl shadow-sm p-5">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
             Create Ticket
           </h2>

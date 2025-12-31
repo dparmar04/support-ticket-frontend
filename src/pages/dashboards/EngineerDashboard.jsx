@@ -65,10 +65,10 @@ const EngineerDashboard = () => {
           </h2>
 
           {tickets.map((ticket) => (
+
             <div
               key={ticket._id}
-              className="bg-white rounded-xl shadow-sm p-5 space-y-3"
-            >
+              className="bg-white rounded-xl shadow-sm p-5 space-y-3" >
               <div className="flex items-start justify-between">
                 <div>
                   <h3 className="font-medium text-gray-900">

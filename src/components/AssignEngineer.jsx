@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import toast from "react-hot-toast";
 
 const AssignEngineer = ({ ticketId, currentEngineer, onAssigned }) => {
   const [engineers, setEngineers] = useState([]);
@@ -20,9 +21,10 @@ const AssignEngineer = ({ ticketId, currentEngineer, onAssigned }) => {
       await api.patch(`/tickets/${ticketId}/assign`, {
         engineerId: selected,
       });
+      toast.success("Engineer assigned");
       onAssigned();
     } catch {
-      alert("Failed to reassign ticket");
+      toast.error("Failed to reassign ticket");
     } finally {
       setLoading(false);
     }
