@@ -48,7 +48,7 @@ const AssignEngineer = ({ ticketId, currentEngineer, onAssigned }) => {
       <button
         onClick={handleAssign}
         disabled={loading}
-        className="text-sm bg-purple-600 text-white px-5 py-2 rounded hover:bg-purple-700 disabled:opacity-50 cursor-pointer"
+        className="w-full sm:w-auto text-sm bg-purple-600 text-white px-5 py-2 rounded hover:bg-purple-700 disabled:opacity-50 cursor-pointer"
       >
         {loading ? "Assigning..." : "Assign"}
       </button>

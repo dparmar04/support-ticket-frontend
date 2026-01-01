@@ -65,44 +65,54 @@ const EngineerDashboard = () => {
           </h2>
 
           {tickets.map((ticket) => (
-
             <div
               key={ticket._id}
-              className="bg-white rounded-xl shadow-sm p-5 space-y-3" >
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-medium text-gray-900">
+              className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6
+               hover:shadow-md transition space-y-4"
+            >
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-gray-900 truncate">
                     {ticket.title}
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="text-sm text-gray-500 mt-1 line-clamp-2">
                     {ticket.description}
                   </p>
                 </div>
 
                 <span
-                  className={`text-xs px-2 py-1 rounded-full capitalize ${statusColor[ticket.status]
-                    }`}
+                  className={`shrink-0 text-xs px-3 py-1 rounded-full capitalize self-start
+          ${statusColor[ticket.status]}`}
                 >
                   {ticket.status}
                 </span>
               </div>
 
-              <div className="flex gap-2 text-xs">
-                <span className="px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+              {/* Meta */}
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600">
                   Priority: {ticket.priority}
                 </span>
-                <span className="px-2 py-1 rounded-full bg-slate-100 text-slate-600">
+                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600">
                   Category: {ticket.category}
                 </span>
               </div>
 
-              <StatusUpdater
-                ticketId={ticket._id}
-                currentStatus={ticket.status}
-                onUpdated={fetchData}
-              />
+              {/* Divider */}
+              <div className="h-px bg-slate-100" />
+
+              {/* Action */}
+              <div className="flex justify-end">
+                <StatusUpdater
+                  ticketId={ticket._id}
+                  currentStatus={ticket.status}
+                  onUpdated={fetchData}
+                />
+              </div>
             </div>
           ))}
+
 
           {tickets.length === 0 && (
             <EmptyState text="No tickets assigned." />

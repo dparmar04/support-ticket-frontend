@@ -8,7 +8,6 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
   const [newSkill, setNewSkill] = useState("");
   const [saving, setSaving] = useState(false);
 
-  // 🔑 Sync from backend-provided skills
   useEffect(() => {
     setSkills(currentSkills);
   }, [currentSkills]);
@@ -17,7 +16,7 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
     setSaving(true);
     await api.put("/engineer/skills", { skills: updated });
     setSaving(false);
-    onUpdated(); // refetch metrics from backend
+    onUpdated();
   };
 
   const addSkill = async () => {
@@ -27,6 +26,7 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
     const updated = [...skills, skill];
     setSkills(updated);
     setNewSkill("");
+
     try {
       await persistSkills(updated);
       toast.success("Skill added");
@@ -48,22 +48,31 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm p-6 space-y-4">
-      <h3 className="font-semibold text-gray-800">My Skills</h3>
+    <div className="bg-white rounded-xl shadow-sm p-5 sm:p-6 space-y-4">
+      {/* Header */}
+      <div className="space-y-1">
+        <h3 className="font-semibold text-gray-800">My Skills</h3>
 
-      {skills.length === 0 && (
-        <p className="text-sm text-gray-400">
-          No skills added yet. Add skills to receive relevant tickets.
-        </p>
-      )}
+        {skills.length === 0 && (
+          <p className="text-sm text-gray-400">
+            No skills added yet. Add skills to receive relevant tickets.
+          </p>
+        )}
+      </div>
 
-      <div className="flex flex-wrap gap-3">
+      {/* Skills list */}
+      <div className="flex flex-wrap gap-2 sm:gap-3">
         {skills.map((skill) => (
           <div
             key={skill}
-            className="flex items-center gap-2 px-4 py-2 bg-emerald-100 text-emerald-700 rounded-lg text-sm font-medium"
+            className="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2
+                       bg-emerald-100 text-emerald-700 rounded-lg
+                       text-sm font-medium"
           >
-            {skill}
+            <span className="truncate max-w-[120px] sm:max-w-none">
+              {skill}
+            </span>
+
             <button
               onClick={() => removeSkill(skill)}
               className="text-emerald-700 hover:text-red-500 font-bold cursor-pointer"
@@ -74,12 +83,13 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
         ))}
       </div>
 
-      <div className="flex gap-3">
+      {/* Add skill */}
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           value={newSkill}
           onChange={(e) => setNewSkill(e.target.value)}
           placeholder="Add a skill (e.g. react)"
-          className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm
+          className="w-full sm:flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm
                      focus:outline-none focus:ring-2 focus:ring-emerald-500/20"
           onKeyDown={(e) => e.key === "Enter" && addSkill()}
         />
@@ -87,7 +97,8 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
         <button
           onClick={addSkill}
           disabled={saving}
-          className="px-5 py-2 bg-emerald-600 text-white rounded-lg cursor-pointer hover:bg-emerald-700
+          className="w-full sm:w-auto px-5 py-2 bg-emerald-600 text-white rounded-lg
+                     cursor-pointer hover:bg-emerald-700
                      disabled:opacity-50"
         >
           {saving ? "Saving..." : "Add"}
