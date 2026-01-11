@@ -46,9 +46,23 @@ const AdminDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (activeTab === "sales" || activeTab === "engineers") {
-      api.get("/users/admin/overview").then(res => setOverview(res.data));
-    }
+    const loadOverview = async () => {
+      if (activeTab !== "sales" && activeTab !== "engineers") return;
+
+      try {
+        const res = await api.get("/users/admin/overview");
+        setOverview(res.data);
+      } catch (err) {
+        // ❗ IMPORTANT:
+        // Do NOT clear state
+        // Do NOT show toast here
+        // Do NOT redirect
+        // Axios interceptor will handle auth errors
+        return;
+      }
+    };
+
+    loadOverview();
   }, [activeTab]);
 
   const metrics = {
