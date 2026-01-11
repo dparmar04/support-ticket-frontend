@@ -69,7 +69,7 @@ const EditSkills = ({ currentSkills = [], onUpdated }) => {
                        bg-emerald-100 text-emerald-700 rounded-lg
                        text-sm font-medium"
           >
-            <span className="truncate max-w-[120px] sm:max-w-none">
+            <span className="truncate max-w-30 sm:max-w-none">
               {skill}
             </span>
 

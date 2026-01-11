@@ -3,6 +3,7 @@ import api from "../api/axios";
 import toast from "react-hot-toast";
 
 const STATUS_OPTIONS = [
+  { value: "open", label: "Open", disabled: true },
   { value: "in-progress", label: "In Progress" },
   { value: "on-hold", label: "On Hold" },
   { value: "resolved", label: "Resolved" },
@@ -37,7 +38,7 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
         className="border px-2 py-1 rounded text-sm cursor-pointer"
       >
         {STATUS_OPTIONS.map((opt) => (
-          <option key={opt.value} value={opt.value}>
+          <option key={opt.value} value={opt.value} disabled={opt.disabled}>
             {opt.label}
           </option>
         ))}
