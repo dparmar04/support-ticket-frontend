@@ -33,7 +33,7 @@ const AssignEngineer = ({ ticketId, currentEngineer, onAssigned }) => {
   return (
     <div className="flex items-center gap-2 mt-2">
       <select
-        className="border px-2 py-1 rounded text-sm"
+        className="border border-slate-200 px-3 py-2 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 cursor-pointer"
         value={selected}
         onChange={(e) => setSelected(e.target.value)}
       >
@@ -48,7 +48,7 @@ const AssignEngineer = ({ ticketId, currentEngineer, onAssigned }) => {
       <button
         onClick={handleAssign}
         disabled={loading}
-        className="w-full sm:w-auto text-sm bg-purple-600 text-white px-5 py-2 rounded hover:bg-purple-700 disabled:opacity-50 cursor-pointer"
+        className="w-full sm:w-auto text-sm bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50 cursor-pointer transition-all duration-200 font-medium"
       >
         {loading ? "Assigning..." : "Assign"}
       </button>

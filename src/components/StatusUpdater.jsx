@@ -35,7 +35,7 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
       <select
         value={status}
         onChange={(e) => setStatus(e.target.value)}
-        className="border px-2 py-1 rounded text-sm cursor-pointer"
+        className="border border-slate-200 px-3 py-2 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 cursor-pointer"
       >
         {STATUS_OPTIONS.map((opt) => (
           <option key={opt.value} value={opt.value} disabled={opt.disabled}>
@@ -47,7 +47,7 @@ const StatusUpdater = ({ ticketId, currentStatus, onUpdated }) => {
       <button
         onClick={handleUpdate}
         disabled={loading}
-        className="text-sm bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50 cursor-pointer"
+        className="text-sm bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50 cursor-pointer transition-all duration-200 font-medium"
       >
         {loading ? "Saving..." : "Update"}
       </button>

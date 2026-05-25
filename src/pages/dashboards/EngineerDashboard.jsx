@@ -6,9 +6,11 @@ import EditSkills from "../../components/EditSkills";
 
 
 const statusColor = {
-  open: "bg-blue-100 text-blue-700",
-  "in-progress": "bg-amber-100 text-amber-700",
-  resolved: "bg-green-100 text-green-700",
+  open: "bg-blue-50 text-blue-700 ring-1 ring-blue-200/50",
+  "in-progress": "bg-amber-50 text-amber-700 ring-1 ring-amber-200/50",
+  resolved: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/50",
+  "on-hold": "bg-orange-50 text-orange-700 ring-1 ring-orange-200/50",
+  rejected: "bg-red-50 text-red-700 ring-1 ring-red-200/50",
 };
 
 const EngineerDashboard = () => {
@@ -30,7 +32,7 @@ const EngineerDashboard = () => {
     <Layout title="Engineer Dashboard">
 
       <div className="space-y-8">
-        <h2 className="text-lg font-semibold text-gray-800">
+        <h2 className="text-lg font-semibold text-slate-800">
           Your Workspace
         </h2>
         {/* Metrics */}
@@ -39,7 +41,7 @@ const EngineerDashboard = () => {
             <MetricCard
               label="Assigned"
               value={metrics.totalAssigned}
-              accent="border-emerald-500"
+              accent="from-indigo-500 to-indigo-600"
             />
 
             {metrics.statusBreakdown.map((s) => (
@@ -47,7 +49,7 @@ const EngineerDashboard = () => {
                 key={s._id}
                 label={s._id}
                 value={s.count}
-                accent="border-emerald-300"
+                accent="from-indigo-400 to-indigo-500"
               />
             ))}
           </div>
@@ -60,7 +62,7 @@ const EngineerDashboard = () => {
 
         {/* Tickets */}
         <div className="space-y-4">
-          <h2 className="text-lg font-semibold text-gray-800">
+          <h2 className="text-lg font-semibold text-slate-800">
             Assigned Tickets
           </h2>
 
@@ -68,7 +70,7 @@ const EngineerDashboard = () => {
             <div
               key={ticket._id}
               className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6
-               hover:shadow-md transition space-y-4"
+               hover:shadow-lg hover:border-indigo-200/50 transition-all duration-300 space-y-4"
             >
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
@@ -91,10 +93,10 @@ const EngineerDashboard = () => {
 
               {/* Meta */}
               <div className="flex flex-wrap gap-2 text-xs">
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+                <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200/50">
                   Priority: {ticket.priority}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600">
+                <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 ring-1 ring-indigo-200/50">
                   Category: {ticket.category}
                 </span>
               </div>
@@ -125,18 +127,19 @@ const EngineerDashboard = () => {
 };
 
 const MetricCard = ({ label, value, accent }) => (
-  <div
-    className={`bg-white rounded-xl shadow-sm p-5 border-l-4 ${accent}`}
-  >
-    <p className="text-sm text-gray-500 capitalize">{label}</p>
-    <p className="text-2xl font-semibold text-gray-900 mt-1">
+  <div className="bg-white rounded-xl shadow-sm p-5 border border-slate-200 hover:shadow-md hover:border-slate-300 transition-all duration-200">
+    <div className={`inline-flex items-center gap-2 w-8 h-8 rounded-lg bg-gradient-to-br ${accent} mb-3`}>
+      <span className="sr-only">{label}</span>
+    </div>
+    <p className="text-sm text-slate-500 capitalize">{label}</p>
+    <p className="text-2xl font-semibold text-slate-900 mt-1">
       {value}
     </p>
   </div>
 );
 
 const EmptyState = ({ text }) => (
-  <div className="bg-white rounded-xl shadow-sm p-8 text-center text-gray-500">
+  <div className="bg-white rounded-xl shadow-sm p-8 text-center text-slate-400 border border-slate-200">
     {text}
   </div>
 );

@@ -15,26 +15,26 @@ function App() {
     <AuthProvider>
       <Toaster
         position="top-center"
-        toastOptions={{
-          duration: 3000,
-          style: {
-            whiteSpace: "nowrap",
-            background: "rgba(255, 255, 255, 0.15)", // transparent glass base
-            color: "#000",
-            backdropFilter: "blur(12px) saturate(180%)", // main blur effect
-            WebkitBackdropFilter: "blur(12px) saturate(180%)",
-            border: "1px solid rgba(255, 255, 255, 0.25)",
-            borderRadius: "16px",
-            padding: "12px 20px",
-            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.25)",
-            fontWeight: 500,
-            letterSpacing: "0.3px",
-            transition: "all 0.3s ease-in-out",
-            minWidth: "300px",
-            maxWidth: "520px",
-            textAlign: "center",
-          },
-        }}
+          toastOptions={{
+            duration: 3000,
+            style: {
+              whiteSpace: "nowrap",
+              background: "rgba(255, 255, 255, 0.85)",
+              color: "#0f172a",
+              backdropFilter: "blur(16px) saturate(180%)",
+              WebkitBackdropFilter: "blur(16px) saturate(180%)",
+              border: "1px solid rgba(79, 70, 229, 0.15)",
+              borderRadius: "16px",
+              padding: "12px 20px",
+              boxShadow: "0 4px 24px rgba(79, 70, 229, 0.1)",
+              fontWeight: 500,
+              letterSpacing: "0.3px",
+              transition: "all 0.3s ease-in-out",
+              minWidth: "300px",
+              maxWidth: "520px",
+              textAlign: "center",
+            },
+          }}
       />
       <BrowserRouter>
         <Routes>
